@@ -1,0 +1,25 @@
+body{
+    /* background: red; */
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+#quiz-container{
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid red;
+    padding: 20px;
+    border-radius: 15px;
+    background: #ffcfcf;
+}
+button{
+    padding: 5px 10px;
+    font-size: 10px;
+    cursor: pointer;
+}
+#questions{
+    font-size: 15px;
+}
+#result{
+    font-weight: bold;
+}

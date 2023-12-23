@@ -1,19 +1,28 @@
 const quizGame = [
-    {
-        question: "Is this boolean?",
-        option: ["Yes", "No"],
-        correctAnswer: "Yes"
-    },
-    {
-        question: "we are not learning right now, are we?",
-        option: ["Yes", "No"],
-        correctAnswer: "No"
-    }
+  {
+    question: "Is this boolean?",
+    option: ["Yes", "No"],
+    correctAnswer: "Yes",
+  },
+  {
+    question: "we are not learning right now, are we?",
+    option: ["Yes", "No"],
+    correctAnswer: "No",
+  },
+  {
+    question: "is obi a boy?",
+    option: ["A; maybe", "B; Yes", "C; No"],
+    correctAnswer: "B; Yes",
+  },
+  {
+    question: "there 36 states in nigeria",
+    option: ["A; true", "B; false", "C; maybe"],
+    correctAnswer: "A; true",
+  },
 ];
 
 let currentQuestion = 0;
 let score = 0;
-
 
 const questionElement = document.getElementById("questions");
 const optionsContainer = document.getElementById("options-container");
@@ -21,39 +30,45 @@ const resultElement = document.getElementById("result");
 const submitButton = document.getElementById("submit-btn");
 
 function loadQuestions() {
-    const currentQuizData = quizGame[currentQuestion];
-    questionElement.innerText = currentQuizData.question;
-    optionsContainer.innerHTML="";
+  const currentQuizData = quizGame[currentQuestion];
+  questionElement.innerText = currentQuizData.question;
+  optionsContainer.innerHTML = "";
 
-    currentQuizData.option.forEach((option) => {
-        const button = document.createElement("button")
-        button.innerText = option;
-        button.classList.add("option-btn");
-        button.addEventListener("click", () => 
-        checkAnswer(option));
-        optionsContainer.appendChild(button);
-    });
+  currentQuizData.option.forEach((option) => {
+    const button = document.createElement("button");
+    button.innerText = option;
+    button.classList.add("option-btn");
+    button.addEventListener("click", () => checkAnswer(option));
+    optionsContainer.appendChild(button);
+  });
+}
+function nextQuestion() {
+  const currentQuizData = quizGame[currentQuestion];
+  if (currentQuestion < quizGame.length - 1) {
+    currentQuestion++;
+    displayQuestion();
+  } else {
+    displayresult();
+  }
 }
 
+function checkAnswer(userAnswer) {
+  const currentQuizData = quizGame[currentQuestion];
+  if (userAnswer === currentQuizData.correctAnswer) {
+    score++;
+  }
 
-function checkAnswer (userAnswer) {
-    const currentQuizData = quizGame[currentQuestion];
-    if (userAnswer === currentQuizData.correctAnswer){
-        score++;
-    }
+  currentQuestion++;
 
-    currentQuestion++;
-
-    if(currentQuestion < quizGame.length ){
-        loadQuestions()
-    } else {
-        showResult();
-    }
+  if (currentQuestion < quizGame.length) {
+    loadQuestions();
+  } else {
+    showResult();
+  }
 }
 
 function showResult() {
-    resultElement.innerText = `Your score is: ${score} out of ${quizGame.length}`;
-
+  resultElement.innerText = `Your score is: ${score} out of ${quizGame.length}`;
 }
 
 submitButton.addEventListener("click", loadQuestions);

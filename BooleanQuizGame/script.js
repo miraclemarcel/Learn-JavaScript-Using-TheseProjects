@@ -42,15 +42,26 @@ function loadQuestions() {
     optionsContainer.appendChild(button);
   });
 }
+// =======next button=======
 function nextQuestion() {
-  const currentQuizData = quizGame[currentQuestion];
-  if (currentQuestion < quizGame.length - 1) {
-    currentQuestion++;
-    displayQuestion();
+  if (currentQuestion  <quizGame.length - 1) {
+    // === operators====
+    currentQuestion++; // "++" is used for the increment
+    loadQuestions();
   } else {
     displayresult();
   }
 }
+
+// ===== previousQuestion=========
+
+function previousQuestion() {
+  if (currentQuestion > 0 ) {
+    currentQuestion--;  // "--" is used for the decrement
+    loadQuestions();
+  }
+}
+
 
 function checkAnswer(userAnswer) {
   const currentQuizData = quizGame[currentQuestion];

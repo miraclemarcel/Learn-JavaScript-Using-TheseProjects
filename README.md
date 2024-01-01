@@ -8,4 +8,4 @@ PROJECTS BUILT
 
 2. Calulator app -----up next
 
-3. Contact form -------- up next
+3. Contact form -------- up next;
